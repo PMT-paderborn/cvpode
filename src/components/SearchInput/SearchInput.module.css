@@ -1,0 +1,22 @@
+.root {
+  position: relative;
+}
+
+.container {
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.input {
+  flex: 1;
+}
+
+.container button {
+  border-radius: 0;
+}
+
+.lists {
+  position: absolute;
+  width: 100%;
+}

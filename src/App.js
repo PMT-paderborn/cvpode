@@ -1,9 +1,13 @@
-import SearchBar from './components/SearchBar/SearchBar';
+import "./App.css";
+import SearchBar from "./components/SearchBar/SearchBar";
+import Search from "./screens/Search";
 
 function App() {
   return (
-    <div className="App">
-       <SearchBar placeholder="Enter a Text..."/>
+    <div className="app-container">
+      <div className="app-wrapper">
+        <Search />
+      </div>
     </div>
   );
 }
