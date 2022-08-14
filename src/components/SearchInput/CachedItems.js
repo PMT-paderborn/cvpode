@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Badge, Button, IconButton, MenuItem, MenuList, Modal, Typography } from "@mui/material";
+import { Badge, Box, Button, IconButton, MenuItem, MenuList, Modal, Typography } from "@mui/material";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CloseIcon from "@mui/icons-material/Close";
+import PrintIcon from "@mui/icons-material/Print";
 import styles from "./SearchInput.module.css";
 
 const CachedItems = ({ caches, handleCachedItem }) => {
@@ -15,29 +17,43 @@ const CachedItems = ({ caches, handleCachedItem }) => {
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <div className={styles.modal}>
-          <Typography fontWeight={600} fontSize={24}>
-            Selected CPV Codes
-          </Typography>
+          <Box sx={{ display: "flex" }}>
+            <Typography fontWeight={600} fontSize={24} flex={1}>
+              Selected CPV Codes
+            </Typography>
+            <IconButton color="error" onClick={() => setOpen(false)}>
+              <CloseIcon fontSize="medium" />
+            </IconButton>
+          </Box>
           {caches?.length == 0 && (
             <Typography textAlign="center" color="#888" my={10}>
-              Nothnig Selected yet
+              Nothig Selected yet
             </Typography>
           )}
-          <ul>
-            {caches.map((item) => (
-              <li key={item.code} className={styles.listItem}>
-                <IconButton color="error" onClick={() => handleCachedItem(item)}>
-                  <DeleteIcon fontSize="medium" />
-                </IconButton>
-                <Typography fontWeight={600} whiteSpace="nowrap">
-                  {item.code}
-                </Typography>
-                <Typography variant="inherit" noWrap>
-                  {item.description}
-                </Typography>
-              </li>
-            ))}
-          </ul>
+          {caches?.length > 0 && (
+            <ul>
+              {caches.map((item) => (
+                <li key={item.code} className={styles.listItem}>
+                  <IconButton color="error" onClick={() => handleCachedItem(item)}>
+                    <DeleteIcon fontSize="medium" />
+                  </IconButton>
+                  <Typography variant="inherit">
+                    <strong>{item.code}</strong>
+                    {item.description}
+                  </Typography>
+                </li>
+              ))}
+            </ul>
+          )}
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
+              variant="contained"
+              onClick={() => console.log("Something happens")}
+              startIcon={<PrintIcon fontSize="medium" />}
+            >
+              Drunken
+            </Button>
+          </Box>
         </div>
       </Modal>
     </>

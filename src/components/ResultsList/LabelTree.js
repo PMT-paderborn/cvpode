@@ -1,8 +1,7 @@
 import styles from "./ResultsList.module.css";
-import { Accordion, AccordionSummary, AccordionDetails, Box, Checkbox, Typography } from "@mui/material";
+import { Box, Checkbox, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getCached } from "../../services/cacheService";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const LabelTree = ({ item, handleCachedItem, caches }) => {
   const [checked, setChecked] = useState(!!getCached(item.code));
@@ -20,19 +19,11 @@ const LabelTree = ({ item, handleCachedItem, caches }) => {
       <Checkbox checked={checked} onChange={() => handleCheckedItem(item)} onClick={(e) => e.stopPropagation()} />
       <Box sx={{ width: "100%" }}>
         <div className={styles.itemContent}>
-          <strong>{item.code}</strong>
-          <Typography variant="inherit" noWrap>
+          <Typography variant="inherit">
+            <strong>{item.code}</strong>
             {item.description}
           </Typography>
         </div>
-        <Accordion disableGutters elevation={0}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="content" id="header">
-            <Typography>Description</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>{item.description}</Typography>
-          </AccordionDetails>
-        </Accordion>
       </Box>
     </div>
   );

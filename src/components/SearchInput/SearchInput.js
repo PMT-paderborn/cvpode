@@ -1,4 +1,4 @@
-import { Button, MenuItem, MenuList, Paper, TextField, Typography } from "@mui/material";
+import {Box, Button, MenuItem, MenuList, Paper, TextField, Typography } from "@mui/material";
 import Search from "@mui/icons-material/Search";
 import styles from "./SearchInput.module.css";
 import CachedItems from "./CachedItems";
@@ -33,7 +33,12 @@ const SearchInput = ({
 
       {searchItems?.length > 0 && (
         <Paper className={styles.lists}>
-          <MenuList open={searchItems.length}>
+          <Box sx={{borderBottom: "1px solid #eee" , padding: 2}}>
+            <Typography fontWeight={600} fontSize={14}>
+              Ergebnisse in CPV-codes ({searchItems.length} Treffer){" "}
+            </Typography>
+          </Box>
+          <MenuList open={searchItems.length} className={styles.listItems}>
             {searchItems.map((item) => (
               <MenuItem key={item.code} className={styles.listItem} onClick={() => getItem(item.code)}>
                 <span>{item.code}</span>

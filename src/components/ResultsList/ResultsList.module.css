@@ -3,9 +3,11 @@
   border-radius: 8px;
   margin-top: 16px;
   border: 1px solid #e2e0e2;
+  padding: 12px;
 }
 
 .treeItem {
+  cursor: default !important;
   margin-right: 12px !important;
 }
 
@@ -19,23 +21,28 @@
 }
 
 .treeItem svg:first-child {
-  font-size: 30px !important;
-  padding: 4px !important;
-  margin-top: 6px;
+  font-size: 28px !important;
+  padding: 2px !important;
+  margin-top: 10px;
+  margin-left: 14px;
+  border-radius: 8px;
+  background: #e2e0e2;
 }
 
 .item {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 10px;
   padding: 6px;
 }
 
 .itemContent {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
-  height: 42px;
-  padding: 2px;
+  padding: 8px 2px 0;
   width: fit-content;
+}
+
+.itemContent strong {
+  padding-right: 6px;
 }
