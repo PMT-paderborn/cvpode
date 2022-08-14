@@ -1,0 +1,41 @@
+.root {
+  background-color: white;
+  border-radius: 8px;
+  margin-top: 16px;
+  border: 1px solid #e2e0e2;
+}
+
+.treeItem {
+  margin-right: 12px !important;
+}
+
+.treeItem strong {
+  white-space: nowrap;
+}
+
+.treeItem > div {
+  display: flex;
+  align-items: flex-start;
+}
+
+.treeItem svg:first-child {
+  font-size: 30px !important;
+  padding: 4px !important;
+  margin-top: 6px;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  padding: 6px;
+}
+
+.itemContent {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 42px;
+  padding: 2px;
+  width: fit-content;
+}

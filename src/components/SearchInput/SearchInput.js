@@ -1,10 +1,18 @@
-import { Badge, Box, Button, MenuItem, MenuList, Paper, TextField, Typography } from "@mui/material";
+import { Button, MenuItem, MenuList, Paper, TextField, Typography } from "@mui/material";
 import Search from "@mui/icons-material/Search";
-import FolderOpenIcon from "@mui/icons-material/FolderOpen";
-
 import styles from "./SearchInput.module.css";
+import CachedItems from "./CachedItems";
 
-const SearchInput = ({ searchKey, setSearchKey, handleSearch, searchItems, getItem, errorMessage }) => {
+const SearchInput = ({
+  searchKey,
+  setSearchKey,
+  handleSearch,
+  searchItems,
+  getItem,
+  errorMessage,
+  caches,
+  handleCachedItem,
+}) => {
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -16,16 +24,10 @@ const SearchInput = ({ searchKey, setSearchKey, handleSearch, searchItems, getIt
           onChange={(e) => setSearchKey(e.target.value)}
           className={styles.input}
         />
-
         <Button variant="contained" disableElevation onClick={handleSearch}>
           <Search fontSize="large" />
         </Button>
-
-        <Button variant="contained" disableElevation>
-          <Badge badgeContent={0} color="secondary">
-            <FolderOpenIcon fontSize="medium" />
-          </Badge>
-        </Button>
+        <CachedItems caches={caches} handleCachedItem={handleCachedItem} />
       </div>
       <p className={styles.error}>{errorMessage}</p>
 
