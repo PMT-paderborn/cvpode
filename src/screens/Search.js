@@ -68,7 +68,7 @@ const Search = () => {
         caches={caches}
         handleCachedItem={handleCachedItem}
       />
-      <ResultsList data={cpvs} handleCachedItem={handleCachedItem} />
+      <ResultsList data={cpvs} handleCachedItem={handleCachedItem} caches={caches}/>
       {loading && (
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 20 }}>
           <CircularProgress />

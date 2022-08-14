@@ -1,15 +1,19 @@
 import styles from "./ResultsList.module.css";
 import { Accordion, AccordionSummary, AccordionDetails, Box, Checkbox, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getCached } from "../../services/cacheService";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const LabelTree = ({ item, handleCachedItem }) => {
+const LabelTree = ({ item, handleCachedItem, caches }) => {
   const [checked, setChecked] = useState(!!getCached(item.code));
 
   const handleCheckedItem = () => {
     setChecked(handleCachedItem(item));
   };
+
+  useEffect(() => {
+    setChecked(!!getCached(item.code));
+  }, [caches]);
 
   return (
     <div className={styles.item} onClick={(e) => e.stopPropagation()}>

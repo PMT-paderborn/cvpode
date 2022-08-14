@@ -5,7 +5,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EmptyReult from "./EmptyReult";
 import LabelTree from "./LabelTree";
 
-const ResultsList = ({ data, handleCachedItem }) => {
+const ResultsList = ({ data, handleCachedItem, caches }) => {
   if (data.length == 0) return <EmptyReult />;
 
   const renderTree = (node) => {
@@ -14,7 +14,7 @@ const ResultsList = ({ data, handleCachedItem }) => {
         className={styles.treeItem}
         key={node.code}
         nodeId={node.code}
-        label={<LabelTree item={node} handleCachedItem={handleCachedItem} />}
+        label={<LabelTree item={node} handleCachedItem={handleCachedItem} caches={caches}/>}
         sx={{ flexGrow: 1, padding: 1 }}
       >
         {node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}
