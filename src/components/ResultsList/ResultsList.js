@@ -5,9 +5,30 @@ import ChevronRightIcon from "@mui/icons-material/Add";
 import EmptyReult from "./EmptyReult";
 import LabelTree from "./LabelTree";
 import { Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 
-const ResultsList = ({ data, handleCachedItem, caches }) => {
-  if (data.length == 0) return <EmptyReult />;
+const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
+  const [expands, setExpands] = useState([]);
+
+  useEffect(() => {
+    setExpands(getAllChild(data[0]));
+  }, [data]);
+
+  let codeCollections = [];
+
+  const getAllChild = (childNode) => {
+    if (!childNode) return codeCollections;
+
+    codeCollections.push(childNode.code);
+
+    if (Array.isArray(childNode.children)) {
+      for (const node of childNode.children) {
+        getAllChild(node, codeCollections);
+      }
+    }
+
+    return codeCollections;
+  };
 
   const renderTree = (node) => {
     return (
@@ -15,13 +36,19 @@ const ResultsList = ({ data, handleCachedItem, caches }) => {
         className={styles.treeItem}
         key={node.code}
         nodeId={node.code}
-        label={<LabelTree item={node} handleCachedItem={handleCachedItem} caches={caches} />}
+        label={<LabelTree item={node} handleCachedItem={handleCachedItem} caches={caches} searchKey={searchKey}/>}
         sx={{ flexGrow: 1, padding: 1 }}
       >
         {node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}
       </TreeItem>
     );
   };
+
+  const handleToggle = (event, nodeIds) => {
+    setExpands(nodeIds);
+  };
+
+  if (data.length == 0) return <EmptyReult />;
 
   return (
     <div className={styles.root}>
@@ -33,6 +60,8 @@ const ResultsList = ({ data, handleCachedItem, caches }) => {
         aria-label="controlled"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
+        expanded={expands}
+        onNodeToggle={handleToggle}
       >
         {data && data.map((item) => renderTree(item))}
       </TreeView>

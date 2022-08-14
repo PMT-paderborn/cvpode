@@ -1,5 +1,6 @@
 import { Box, CircularProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { debounce, throttle } from "lodash";
 
 import SearchInput from "../components/SearchInput/SearchInput";
 import ResultsList from "../components/ResultsList/ResultsList";
@@ -53,7 +54,7 @@ const Search = () => {
   };
 
   useEffect(() => {
-    handleSearch();
+    handleSearch(searchKey);
   }, [searchKey]);
 
   return (
@@ -68,7 +69,7 @@ const Search = () => {
         caches={caches}
         handleCachedItem={handleCachedItem}
       />
-      <ResultsList data={cpvs} handleCachedItem={handleCachedItem} caches={caches}/>
+      <ResultsList data={cpvs} handleCachedItem={handleCachedItem} caches={caches} searchKey={searchKey}/>
       {loading && (
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 20 }}>
           <CircularProgress />

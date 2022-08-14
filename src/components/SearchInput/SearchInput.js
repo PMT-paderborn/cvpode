@@ -35,7 +35,7 @@ const SearchInput = ({
         <Paper className={styles.lists}>
           <Box sx={{borderBottom: "1px solid #eee" , padding: 2}}>
             <Typography fontWeight={600} fontSize={14}>
-              Ergebnisse in CPV-codes ({searchItems.length} Treffer){" "}
+              Ergebnisse in CPV-codes ({searchItems.length} Treffer)
             </Typography>
           </Box>
           <MenuList open={searchItems.length} className={styles.listItems}>
