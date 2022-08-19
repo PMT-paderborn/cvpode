@@ -6,29 +6,15 @@ import EmptyReult from "./EmptyReult";
 import LabelTree from "./LabelTree";
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import highlighter from "../../utils/highliter";
+import nodeFinder from "../../utils/nodeFinder";
 
 const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
   const [expands, setExpands] = useState([]);
 
   useEffect(() => {
-    setExpands(getAllChild(data[0]));
+    if (data[0]) setExpands(nodeFinder(searchKey, data[0]));
   }, [data]);
-
-  let codeCollections = [];
-
-  const getAllChild = (childNode) => {
-    if (!childNode) return codeCollections;
-
-    codeCollections.push(childNode.code);
-
-    if (Array.isArray(childNode.children)) {
-      for (const node of childNode.children) {
-        getAllChild(node, codeCollections);
-      }
-    }
-
-    return codeCollections;
-  };
 
   const renderTree = (node) => {
     return (
@@ -36,7 +22,7 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
         className={styles.treeItem}
         key={node.code}
         nodeId={node.code}
-        label={<LabelTree item={node} handleCachedItem={handleCachedItem} caches={caches} searchKey={searchKey}/>}
+        label={<LabelTree item={node} caches={caches} handleCachedItem={handleCachedItem} searchKey={searchKey}/>}
         sx={{ flexGrow: 1, padding: 1 }}
       >
         {node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}
@@ -60,8 +46,8 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
         aria-label="controlled"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
-        expanded={expands}
         onNodeToggle={handleToggle}
+        expanded={expands}
       >
         {data && data.map((item) => renderTree(item))}
       </TreeView>
