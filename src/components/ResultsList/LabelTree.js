@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { getCached } from "../../services/cacheService";
 import highlighter from "../../utils/highliter";
 import FixedTopParent from "./FixedTopParent";
+import DroppInfo from "./DroppInfo";
 
 const LabelTree = ({ item, handleCachedItem, caches, searchKey }) => {
   const [checked, setChecked] = useState(!!getCached(item.code));
+
   const handleCheckedItem = () => setChecked(handleCachedItem(item));
 
   const ref = useRef();
@@ -14,7 +16,7 @@ const LabelTree = ({ item, handleCachedItem, caches, searchKey }) => {
   useEffect(() => {
     setChecked(!!getCached(item.code));
   }, [caches]);
-
+  
   return (
     <FixedTopParent isParent={!item.parent_id} parentRef={ref}>
       <div ref={ref} className={styles.item} onClick={(e) => e.stopPropagation()}>
@@ -27,6 +29,8 @@ const LabelTree = ({ item, handleCachedItem, caches, searchKey }) => {
           </p>
         </Box>
       </div>
+      {item.synonyme && <DroppInfo title="synonyme" content={item.synonyme} />}
+      {item.hintweise && <DroppInfo title="hintweise" content={item.hintweise} />}
     </FixedTopParent>
   );
 };

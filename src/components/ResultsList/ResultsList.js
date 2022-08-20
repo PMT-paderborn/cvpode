@@ -4,7 +4,7 @@ import ExpandMoreIcon from "@mui/icons-material/Remove";
 import ChevronRightIcon from "@mui/icons-material/Add";
 import EmptyReult from "./EmptyReult";
 import LabelTree from "./LabelTree";
-import { Typography } from "@mui/material";
+import { List, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import highlighter from "../../utils/highliter";
 import nodeFinder from "../../utils/nodeFinder";
@@ -37,7 +37,7 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
         label={<LabelTree item={node} caches={caches} handleCachedItem={handleCachedItem} searchKey={searchKey} />}
         sx={{ flexGrow: 1, padding: 1 }}
       >
-        {node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}
+        <List>{node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}</List>
       </TreeItem>
     );
   };

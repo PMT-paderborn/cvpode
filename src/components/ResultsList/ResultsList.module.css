@@ -43,11 +43,16 @@
   background: #fff;
   width: 100%;
   max-width: 1100px;
+  min-height: 95px;
   max-height: 95px;
   margin: auto;
   box-shadow: 1px 1px 10px 2px #4444443b;
   border-radius: 0 0 8px 8px;
-  z-index: 50;
+  z-index: 1000;
+}
+
+.fixedTopParent .dropper {
+  display: none;
 }
 
 .itemContent {
@@ -62,4 +67,39 @@
 
 .itemContent strong {
   padding-right: 6px;
+}
+
+.dropperWraper {
+}
+
+.dropper {
+  display: flex;
+  align-items: center;
+  background-color: #44b3ea !important;
+  color: #fff !important;
+  font-weight: bold;
+  height: 24px;
+  width: fit-content;
+  padding-right: 14px;
+  border-radius: 8px 8px 0 0;
+}
+
+.dropper > svg {
+  background: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.dropContent {
+  display: none;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #44b3ea;
+  color: #000;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 0 0 8px 8px;
+}
+
+.dropContentOpen {
+  display: block;
 }
