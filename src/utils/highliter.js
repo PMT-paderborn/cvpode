@@ -1,5 +1,4 @@
 const highlighter = (searchKey, searchContent) => {
-  console.log(searchKey, searchContent);
   const startedIndex = keyExists(searchKey, searchContent);
   if (startedIndex === false) return searchContent;
 

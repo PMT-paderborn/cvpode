@@ -1,4 +1,4 @@
-import {Box, Button, MenuItem, MenuList, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, MenuItem, MenuList, Paper, TextField, Typography } from "@mui/material";
 import Search from "@mui/icons-material/Search";
 import styles from "./SearchInput.module.css";
 import CachedItems from "./CachedItems";
@@ -6,13 +6,19 @@ import CachedItems from "./CachedItems";
 const SearchInput = ({
   searchKey,
   setSearchKey,
-  handleSearch,
+  handleSearchClick,
   searchItems,
   getItem,
   errorMessage,
   caches,
   handleCachedItem,
 }) => {
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearchClick();
+    }
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -23,8 +29,9 @@ const SearchInput = ({
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
           className={styles.input}
+          onKeyDown={handleInputKeyDown}
         />
-        <Button variant="contained" disableElevation onClick={handleSearch}>
+        <Button variant="contained" disableElevation onClick={handleSearchClick}>
           <Search fontSize="large" />
         </Button>
         <CachedItems caches={caches} handleCachedItem={handleCachedItem} />
@@ -33,7 +40,7 @@ const SearchInput = ({
 
       {searchItems?.length > 0 && (
         <Paper className={styles.lists}>
-          <Box sx={{borderBottom: "1px solid #eee" , padding: 2}}>
+          <Box sx={{ borderBottom: "1px solid #eee", padding: 2 }}>
             <Typography fontWeight={600} fontSize={14}>
               Ergebnisse in CPV-codes ({searchItems.length} Treffer)
             </Typography>

@@ -1,6 +1,5 @@
 import { Box, CircularProgress } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
-import { debounce, throttle } from "lodash";
 
 import SearchInput from "../components/SearchInput/SearchInput";
 import ResultsList from "../components/ResultsList/ResultsList";
@@ -28,10 +27,20 @@ const Search = () => {
     });
   };
 
-  const handleGetter = async (id) => {
+  const handleGetter = async (code) => {
     setLoading(true);
     setSearchResults([]);
-    await getCpv(id).then(({ data }) => {
+    await getCpv(code).then(({ data }) => {
+      setLoading(false);
+      setCpvs(data);
+      setError(data?.error);
+    });
+  };
+
+  const handleSearchClick = async () => {
+    setLoading(true);
+    setSearchResults([]);
+    await getCpv(searchKey).then(({ data }) => {
       setLoading(false);
       setCpvs(data);
       setError(data?.error);
@@ -58,24 +67,24 @@ const Search = () => {
   }, [searchKey]);
 
   return (
-    <div>
+    <>
       <SearchInput
         searchKey={searchKey}
         setSearchKey={setSearchKey}
-        handleSearch={handleSearch}
         searchItems={searchResults}
+        handleSearchClick={handleSearchClick}
         errorMessage={error}
         getItem={handleGetter}
         caches={caches}
         handleCachedItem={handleCachedItem}
       />
-      <ResultsList data={cpvs} handleCachedItem={handleCachedItem} caches={caches} searchKey={searchKey}/>
+      <ResultsList data={cpvs} handleCachedItem={handleCachedItem} caches={caches} searchKey={searchKey} />
       {loading && (
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 20 }}>
           <CircularProgress />
         </Box>
       )}
-    </div>
+    </>
   );
 };
 

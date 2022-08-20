@@ -13,8 +13,20 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
   const [expands, setExpands] = useState([]);
 
   useEffect(() => {
-    if (data[0]) setExpands(nodeFinder(searchKey, data[0]));
+    let keyCodes = [];
+
+    if (data && data.length) {
+      for (let key in data) {
+        keyCodes = [...keyCodes, ...nodeFinder(searchKey, data[key])];
+      }
+    }
+
+    setExpands(keyCodes);
   }, [data]);
+
+  const handleToggle = (event, nodeIds) => {
+    setExpands(nodeIds);
+  };
 
   const renderTree = (node) => {
     return (
@@ -22,16 +34,12 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
         className={styles.treeItem}
         key={node.code}
         nodeId={node.code}
-        label={<LabelTree item={node} caches={caches} handleCachedItem={handleCachedItem} searchKey={searchKey}/>}
+        label={<LabelTree item={node} caches={caches} handleCachedItem={handleCachedItem} searchKey={searchKey} />}
         sx={{ flexGrow: 1, padding: 1 }}
       >
         {node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}
       </TreeItem>
     );
-  };
-
-  const handleToggle = (event, nodeIds) => {
-    setExpands(nodeIds);
   };
 
   if (data.length == 0) return <EmptyReult />;
