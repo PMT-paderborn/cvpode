@@ -4,7 +4,8 @@ let collections = [];
 
 const iterate = (search, node) => {
   if (node.hasChildren) {
-    for (let key in node.children) {
+    for (const key in node.children) {
+      console.log(node.children[key] instanceof Array);
       const result = iterate(search, node.children[key]);
 
       if (result !== undefined) {

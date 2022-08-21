@@ -6,7 +6,6 @@ import EmptyReult from "./EmptyReult";
 import LabelTree from "./LabelTree";
 import { List, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import highlighter from "../../utils/highliter";
 import nodeFinder from "../../utils/nodeFinder";
 
 const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) => {
@@ -16,12 +15,15 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) =>
     let keyCodes = [];
 
     if (data && data.length) {
-      for (let key in data) {
-        keyCodes = [...keyCodes, ...nodeFinder(searchKey, data[key])];
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) keyCodes = [...keyCodes, ...nodeFinder(searchKey, data[key])];
       }
     }
 
-    setExpands(keyCodes);
+    setTimeout(() => {
+      setExpands([]);
+      setExpands(keyCodes);
+    }, 50);
   }, [data]);
 
   const handleToggle = (event, nodeIds) => {

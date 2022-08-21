@@ -40,6 +40,8 @@ const Search = () => {
   };
 
   const handleSearchClick = async () => {
+    if (searchKey.length <= 2) return;
+
     setLoading(true);
     setSearchResults([]);
     await getCpv(searchKey).then(({ data }) => {
