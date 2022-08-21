@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import highlighter from "../../utils/highliter";
 import nodeFinder from "../../utils/nodeFinder";
 
-const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
+const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) => {
   const [expands, setExpands] = useState([]);
 
   useEffect(() => {
@@ -47,7 +47,12 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey }) => {
   return (
     <div className={styles.root}>
       <Typography fontSize={24} color="#9b9b9b">
-        Alle Abteilungen
+        {selected && (
+          <>
+            Ergebnisse in CPV-Code <strong>{selected.description}</strong>
+          </>
+        )}
+        {!selected && "Alle Abteilungen"}
       </Typography>
       <TreeView
         sx={{ width: "100%", border: "1px solid #d5d5d5" }}

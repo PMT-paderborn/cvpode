@@ -11,6 +11,7 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [searchKey, setSearchKey] = useState("");
+  const [selected, seSelected] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [cpvs, setCpvs] = useState([]);
   const [caches, setCaches] = useState(getAllCache());
@@ -27,10 +28,11 @@ const Search = () => {
     });
   };
 
-  const handleGetter = async (code) => {
+  const handleGetter = async (node) => {
+    seSelected(node);
     setLoading(true);
     setSearchResults([]);
-    await getCpv(code).then(({ data }) => {
+    await getCpv(node.code).then(({ data }) => {
       setLoading(false);
       setCpvs(data);
       setError(data?.error);
@@ -63,6 +65,7 @@ const Search = () => {
   };
 
   useEffect(() => {
+    seSelected(null);
     handleSearch(searchKey);
   }, [searchKey]);
 
@@ -78,7 +81,13 @@ const Search = () => {
         caches={caches}
         handleCachedItem={handleCachedItem}
       />
-      <ResultsList data={cpvs} handleCachedItem={handleCachedItem} caches={caches} searchKey={searchKey} />
+      <ResultsList
+        data={cpvs}
+        handleCachedItem={handleCachedItem}
+        caches={caches}
+        searchKey={searchKey}
+        selected={selected}
+      />
       {loading && (
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 20 }}>
           <CircularProgress />

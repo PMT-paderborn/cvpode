@@ -32,9 +32,8 @@ const LabelTree = ({ item, handleCachedItem, caches, searchKey }) => {
           </p>
         </Box>
       </div>
-      {hint && <DroppInfo title="hintweise" content={hint} />}
-      {!hint && item.synonyme && <DroppInfo title="synonyme" content={item.synonyme} />}
-      {/* {item.hintweise && <DroppInfo title="hintweise" content={item.hintweise} />} */}
+      {hint && <DroppInfo title="hintweise" content={hint} synonyme={item.synonyme} searchKey={searchKey} />}
+      {!hint && item.synonyme && <DroppInfo title="synonyme" content={item.synonyme} searchKey={searchKey} />}
     </FixedTopParent>
   );
 };
@@ -58,7 +57,6 @@ const getDepartmentLabel = (code) => {
 };
 
 const getHint = (code) => {
-  console.log(jsonDB.HintsData.find((item) => code.includes(item.code))?.hint);
   return jsonDB.HintsData.find((item) => code.includes(item.code))?.hint;
 };
 

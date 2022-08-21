@@ -47,7 +47,7 @@ const SearchInput = ({
           </Box>
           <MenuList open={searchItems.length} className={styles.listItems}>
             {searchItems.map((item) => (
-              <MenuItem key={item.code} className={styles.listItem} onClick={() => getItem(item.code)}>
+              <MenuItem key={item.code} className={styles.listItem} onClick={() => getItem(item)}>
                 <span>{item.code}</span>
                 <Typography variant="inherit" noWrap>
                   {item.description}
