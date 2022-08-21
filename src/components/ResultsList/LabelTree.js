@@ -5,6 +5,7 @@ import { getCached } from "../../services/cacheService";
 import highlighter from "../../utils/highliter";
 import FixedTopParent from "./FixedTopParent";
 import DroppInfo from "./DroppInfo";
+import jsonDB from "../../Hintsdata.json";
 
 const LabelTree = ({ item, handleCachedItem, caches, searchKey }) => {
   const [checked, setChecked] = useState(!!getCached(item.code));
@@ -16,7 +17,9 @@ const LabelTree = ({ item, handleCachedItem, caches, searchKey }) => {
   useEffect(() => {
     setChecked(!!getCached(item.code));
   }, [caches]);
-  
+
+  const hint = getHint(item.code);
+
   return (
     <FixedTopParent isParent={!item.parent_id} parentRef={ref}>
       <div ref={ref} className={styles.item} onClick={(e) => e.stopPropagation()}>
@@ -29,8 +32,9 @@ const LabelTree = ({ item, handleCachedItem, caches, searchKey }) => {
           </p>
         </Box>
       </div>
-      {item.synonyme && <DroppInfo title="synonyme" content={item.synonyme} />}
-      {item.hintweise && <DroppInfo title="hintweise" content={item.hintweise} />}
+      {hint && <DroppInfo title="hintweise" content={hint} />}
+      {!hint && item.synonyme && <DroppInfo title="synonyme" content={item.synonyme} />}
+      {/* {item.hintweise && <DroppInfo title="hintweise" content={item.hintweise} />} */}
     </FixedTopParent>
   );
 };
@@ -51,6 +55,11 @@ const getDepartmentLabel = (code) => {
   if (code < 44000000) return <span style={{ ...styles, backgroundColor: "#f44336" }}>Lieferleistungen</span>;
   if (code > 48000000.8) return <span style={{ ...styles, backgroundColor: "#009688" }}>Bauleistungen</span>;
   if (code == 45000000.7) return <span style={{ ...styles, backgroundColor: "##009688" }}>Dienstleistungen</span>;
+};
+
+const getHint = (code) => {
+  console.log(jsonDB.HintsData.find((item) => code.includes(item.code))?.hint);
+  return jsonDB.HintsData.find((item) => code.includes(item.code))?.hint;
 };
 
 export default LabelTree;

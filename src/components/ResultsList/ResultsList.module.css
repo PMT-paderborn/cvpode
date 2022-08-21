@@ -77,11 +77,13 @@
   align-items: center;
   background-color: #44b3ea !important;
   color: #fff !important;
-  font-weight: bold;
   height: 24px;
   width: fit-content;
   padding-right: 14px;
   border-radius: 8px 8px 0 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .dropper > svg {
@@ -98,6 +100,7 @@
   padding: 10px;
   margin-bottom: 8px;
   border-radius: 0 0 8px 8px;
+  white-space: pre-line;
 }
 
 .dropContentOpen {
