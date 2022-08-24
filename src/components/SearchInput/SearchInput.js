@@ -6,6 +6,7 @@ import CachedItems from "./CachedItems";
 const SearchInput = ({
   searchKey,
   setSearchKey,
+  reloadSearch,
   handleSearchClick,
   searchItems,
   getItem,
@@ -19,6 +20,10 @@ const SearchInput = ({
     }
   };
 
+  const onClickInputHandler = () => {
+    reloadSearch();
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -30,6 +35,7 @@ const SearchInput = ({
           onChange={(e) => setSearchKey(e.target.value)}
           className={styles.input}
           onKeyDown={handleInputKeyDown}
+          onClick={onClickInputHandler}
         />
         <Button variant="contained" disableElevation onClick={handleSearchClick}>
           <Search fontSize="large" />

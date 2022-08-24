@@ -26,10 +26,10 @@ const LabelTree = ({ item, handleCachedItem, caches, searchKey }) => {
         <Checkbox checked={checked} onChange={() => handleCheckedItem(item)} onClick={(e) => e.stopPropagation()} />
         <Box sx={{ width: "100%" }}>
           {!item.parent_id && getDepartmentLabel(item.code)}
-          <p className={styles.itemContent}>
+          <div className={styles.itemContent}>
             <strong dangerouslySetInnerHTML={{ __html: highlighter(searchKey, item.code) }} />
             <span dangerouslySetInnerHTML={{ __html: highlighter(searchKey, item.description) }} />
-          </p>
+          </div>
         </Box>
       </div>
       {hint && <DroppInfo title="hintweise" content={hint} synonyme={item.synonyme} searchKey={searchKey} />}

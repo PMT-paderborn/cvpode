@@ -11,16 +11,12 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [selected, seSelected] = useState(null);
+  const [selected, setSelected] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [cpvs, setCpvs] = useState([]);
   const [caches, setCaches] = useState(getAllCache());
 
-  const handleSearch = async () => {
-    if (searchKey.length == 0) return;
-
-    setLoading(true);
-    setCpvs([]);
+  const reloadSearch = async () => {
     await searchCpv(searchKey).then(({ data }) => {
       setLoading(false);
       setSearchResults(data);
@@ -28,8 +24,16 @@ const Search = () => {
     });
   };
 
+  const handleSearch = async () => {
+    if (searchKey.length == 0) return;
+
+    setLoading(true);
+    setCpvs([]);
+    reloadSearch();
+  };
+
   const handleGetter = async (node) => {
-    seSelected(node);
+    setSelected(node);
     setLoading(true);
     setSearchResults([]);
     await getCpv(node.code).then(({ data }) => {
@@ -67,7 +71,7 @@ const Search = () => {
   };
 
   useEffect(() => {
-    seSelected(null);
+    setSelected(null);
     handleSearch(searchKey);
   }, [searchKey]);
 
@@ -78,6 +82,7 @@ const Search = () => {
         setSearchKey={setSearchKey}
         searchItems={searchResults}
         handleSearchClick={handleSearchClick}
+        reloadSearch={reloadSearch}
         errorMessage={error}
         getItem={handleGetter}
         caches={caches}

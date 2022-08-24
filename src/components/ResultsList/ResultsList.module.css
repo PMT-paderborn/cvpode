@@ -59,14 +59,21 @@
   margin: 0;
   padding: 8px 2px 0;
   width: fit-content;
+  user-select: text !important;
+  cursor: auto;
+  display: block;
 }
 
 .itemContent span {
   color: #4d4d4d;
+  user-select: text !important;
+  cursor: auto;
 }
 
 .itemContent strong {
   padding-right: 6px;
+  user-select: text !important;
+  cursor: auto;
 }
 
 .dropperWraper {
