@@ -64,6 +64,8 @@
   padding: 8px 4px;
   border-radius: 4px;
   border: 1px solid #d5d5d5;
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 .modal ul li {

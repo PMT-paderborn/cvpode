@@ -55,7 +55,9 @@ const SearchInput = ({
               </MenuItem>
             ))}
           </MenuList>
-          <div className={styles.listAll} onClick={handleSearchClick}>Alle Abteilungen Anzeigen</div>
+          <div className={styles.listAll} onClick={handleSearchClick}>
+            Alle Abteilungen Anzeigen
+          </div>
         </Paper>
       )}
     </div>

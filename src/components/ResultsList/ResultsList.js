@@ -63,6 +63,7 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) =>
         defaultExpandIcon={<ChevronRightIcon />}
         onNodeToggle={handleToggle}
         expanded={expands}
+        disabledItemsFocusable={true}
       >
         {data && data.map((item) => renderTree(item))}
       </TreeView>

@@ -18,8 +18,6 @@ const iterate = (search, node) => {
   // check is current node code same as code then return it else decrement index by one
   if (keyExists(search, node.code) !== false || keyExists(search, node.description) !== false) return node.code;
 
-  console.log(search, node.code, keyExists(search, node.code));
-
   return;
 };
 

@@ -1,5 +1,5 @@
 import styles from "./ResultsList.module.css";
-import { Box, Checkbox } from "@mui/material";
+import { Box, Checkbox, Divider } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { getCached } from "../../services/cacheService";
 import highlighter from "../../utils/highliter";
@@ -53,7 +53,7 @@ const getDepartmentLabel = (code) => {
 
   if (code < 44000000) return <span style={{ ...styles, backgroundColor: "#f44336" }}>Lieferleistungen</span>;
   if (code > 48000000.8) return <span style={{ ...styles, backgroundColor: "#009688" }}>Bauleistungen</span>;
-  if (code == 45000000.7) return <span style={{ ...styles, backgroundColor: "##009688" }}>Dienstleistungen</span>;
+  if (code == 45000000.7) return <span style={{ ...styles, backgroundColor: "#009688" }}>Dienstleistungen</span>;
 };
 
 const getHint = (code) => {
