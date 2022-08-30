@@ -6,7 +6,7 @@ const getAllCache = () => {
 
 const getCached = (code) => {
   let items = getAllCache();
-  return items.find((item) => item.code == code);
+  return items.find((item) => item.code === code);
 };
 
 const storeCache = (item) => {

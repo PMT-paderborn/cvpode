@@ -1,20 +1,17 @@
-import React, { useState } from "react";
-import {
-  Badge,
-  Box,
-  Button,
-  IconButton,
-  Modal,
-  Typography,
-} from "@mui/material";
+import React, { useState, useRef } from "react";
+import { Badge, Box, Button, IconButton, Modal, Typography } from "@mui/material";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseIcon from "@mui/icons-material/Close";
 import PrintIcon from "@mui/icons-material/Print";
 import styles from "./SearchInput.module.css";
+import ReactToPrint from "react-to-print";
+import ListPrintItems from "./ListPrintItems";
 
 const CachedItems = ({ caches, handleCachedItem }) => {
   const [open, setOpen] = useState(false);
+  var printListRef = useRef;
+
   return (
     <>
       <Button variant="contained" disableElevation onClick={() => setOpen(true)}>
@@ -53,14 +50,18 @@ const CachedItems = ({ caches, handleCachedItem }) => {
             </ul>
           )}
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button
-              variant="contained"
-              onClick={() => console.log("Something happens")}
-              startIcon={<PrintIcon fontSize="medium" />}
-            >
-              Drunken
-            </Button>
+            <ReactToPrint
+              trigger={() => (
+                <Button variant="contained" startIcon={<PrintIcon fontSize="medium" />}>
+                  Drunken
+                </Button>
+              )}
+              content={() => printListRef}
+            />
           </Box>
+          <div style={{ display: "none" }}>
+            <ListPrintItems items={caches} ref={(el) => (printListRef = el)} />
+          </div>
         </div>
       </Modal>
     </>
