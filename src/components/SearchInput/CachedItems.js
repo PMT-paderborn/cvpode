@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Badge, Box, Button, IconButton, MenuItem, MenuList, Modal, Typography } from "@mui/material";
+import {
+  Badge,
+  Box,
+  Button,
+  IconButton,
+  Modal,
+  Typography,
+} from "@mui/material";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,7 +18,7 @@ const CachedItems = ({ caches, handleCachedItem }) => {
   return (
     <>
       <Button variant="contained" disableElevation onClick={() => setOpen(true)}>
-        <Badge badgeContent={caches?.length} color="secondary">
+        <Badge badgeContent={caches?.length} color="warning">
           <FolderOpenIcon fontSize="medium" />
         </Badge>
       </Button>

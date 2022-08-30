@@ -1,7 +1,7 @@
 import styles from "./ResultsList.module.css";
 import { TreeView, TreeItem } from "@mui/lab";
-import ExpandMoreIcon from "@mui/icons-material/Remove";
-import ChevronRightIcon from "@mui/icons-material/Add";
+import ExpandMoreIcon from "../../Icons/DropCloseIcon";
+import ClosedIcon from "../../Icons/DropOpenIcon";
 import EmptyReult from "./EmptyReult";
 import LabelTree from "./LabelTree";
 import { List, Typography } from "@mui/material";
@@ -36,15 +36,24 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) =>
         className={styles.treeItem}
         key={node.code}
         nodeId={node.code}
-        label={<LabelTree item={node} caches={caches} handleCachedItem={handleCachedItem} searchKey={searchKey} />}
+        label={
+          <LabelTree
+            item={node}
+            caches={caches}
+            handleCachedItem={handleCachedItem}
+            searchKey={searchKey}
+          />
+        }
         sx={{ flexGrow: 1, padding: 1 }}
       >
-        <List>{node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}</List>
+        <List>
+          {node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}
+        </List>
       </TreeItem>
     );
   };
 
-  if (data.length == 0) return <EmptyReult />;
+  if (data.length === 0) return <EmptyReult />;
 
   return (
     <div className={styles.root}>
@@ -60,7 +69,7 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) =>
         sx={{ width: "100%", border: "1px solid #d5d5d5" }}
         aria-label="controlled"
         defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
+        defaultExpandIcon={<ClosedIcon />}
         onNodeToggle={handleToggle}
         expanded={expands}
       >

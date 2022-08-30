@@ -1,5 +1,15 @@
-import { Box, Button, MenuItem, MenuList, Paper, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  InputBase,
+  MenuItem,
+  MenuList,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Search from "@mui/icons-material/Search";
+import SearchIcon from "../../Icons/SearchIcon";
 import styles from "./SearchInput.module.css";
 import CachedItems from "./CachedItems";
 
@@ -27,10 +37,9 @@ const SearchInput = ({
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <TextField
+        <InputBase
           id="input-text-input"
-          variant="filled"
-          label="Find CVP code"
+          placeholder="Find CVP code"
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
           className={styles.input}
@@ -38,7 +47,7 @@ const SearchInput = ({
           onClick={onClickInputHandler}
         />
         <Button variant="contained" disableElevation onClick={handleSearchClick}>
-          <Search fontSize="large" />
+          <SearchIcon fontSize="small" />
         </Button>
         <CachedItems caches={caches} handleCachedItem={handleCachedItem} />
       </div>
