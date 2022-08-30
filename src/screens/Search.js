@@ -1,11 +1,17 @@
 import { Box, CircularProgress } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import SearchInput from "../components/SearchInput/SearchInput";
 import ResultsList from "../components/ResultsList/ResultsList";
 
 import { searchCpv, getCpv } from "../services/cpvService";
-import { getCached, getAllCache, storeCache, removeCache } from "../services/cacheService";
+import {
+  getCached,
+  getAllCache,
+  storeCache,
+  removeCache,
+  clearCache,
+} from "../services/cacheService";
 
 const Search = () => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +31,7 @@ const Search = () => {
   };
 
   const handleSearch = async () => {
-    if (searchKey.length == 0) return;
+    if (!searchKey) return;
 
     setLoading(true);
     setCpvs([]);
@@ -44,7 +50,7 @@ const Search = () => {
   };
 
   const handleSearchClick = async () => {
-    if (searchKey.length <= 2) return;
+    if (!searchKey || searchKey.length <= 2) return;
 
     setLoading(true);
     setSearchResults([]);
@@ -70,10 +76,18 @@ const Search = () => {
     return true;
   };
 
+  const clearSearchResult = () => {
+    setSearchResults([]);
+  };
+
   useEffect(() => {
     setSelected(null);
     handleSearch(searchKey);
   }, [searchKey]);
+
+  useEffect(() => {
+    clearCache();
+  }, []);
 
   return (
     <>
@@ -82,7 +96,7 @@ const Search = () => {
         setSearchKey={setSearchKey}
         searchItems={searchResults}
         handleSearchClick={handleSearchClick}
-        reloadSearch={reloadSearch}
+        clearSearchResult={clearSearchResult}
         errorMessage={error}
         getItem={handleGetter}
         caches={caches}
@@ -96,7 +110,9 @@ const Search = () => {
         selected={selected}
       />
       {loading && (
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 20 }}>
+        <Box
+          sx={{ display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 20 }}
+        >
           <CircularProgress />
         </Box>
       )}

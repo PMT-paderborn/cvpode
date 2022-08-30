@@ -32,7 +32,7 @@ const CachedItems = ({ caches, handleCachedItem }) => {
               <CloseIcon fontSize="medium" />
             </IconButton>
           </Box>
-          {caches?.length == 0 && (
+          {caches?.length === 0 && (
             <Typography textAlign="center" color="#888" my={10}>
               Nothig Selected yet
             </Typography>
