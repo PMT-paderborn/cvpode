@@ -8,7 +8,6 @@
 
 .treeItem {
   cursor: default !important;
-  margin-right: 12px !important;
 }
 
 .treeItem strong {
@@ -18,14 +17,16 @@
 .treeItem > div {
   display: flex;
   align-items: flex-start;
+  background: none !important;
 }
 
+.treeItem > div:hover {
+  background: none !important;
+}
+
+
 .treeItem svg:first-child {
-  font-size: 24px;
-  font-weight: 600;
-  padding: 16px;
-  margin-top: 2px;
-  margin-left: 24px;
+  padding-top: 10px;
 }
 
 .item {
@@ -54,18 +55,20 @@
   display: none;
 }
 
+.checkbox {
+  padding: 0 4px 0 0;
+}
+
 .itemContent {
   margin: 0;
-  padding: 8px 2px 0;
+  padding: 0 2px 0;
   width: fit-content;
-  user-select: text !important;
   cursor: auto;
   display: block;
 }
 
 .itemContent span {
   color: #4d4d4d;
-  user-select: text !important;
   cursor: auto;
 }
 
@@ -73,9 +76,6 @@
   padding-right: 6px;
   user-select: text !important;
   cursor: auto;
-}
-
-.dropperWraper {
 }
 
 .dropper {

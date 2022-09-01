@@ -33,17 +33,19 @@ const SearchInput = ({
     <ClickAwayListener onClickAway={clearSearchResult}>
       <div className={styles.root}>
         <div className={styles.container}>
-          <InputBase
-            id="input-text-input"
-            placeholder="Find CVP code"
-            value={searchKey}
-            onChange={(e) => setSearchKey(e.target.value)}
-            className={styles.input}
-            onKeyDown={handleInputKeyDown}
-          />
-          <Button variant="contained" disableElevation onClick={handleSearchClick}>
-            <SearchIcon fontSize="small" />
-          </Button>
+          <div className={styles.inputGroup}>
+            <InputBase
+                id="input-text-input"
+                placeholder="Find CVP code"
+                value={searchKey}
+                onChange={(e) => setSearchKey(e.target.value)}
+                className={styles.input}
+                onKeyDown={handleInputKeyDown}
+            />
+            <Button variant="contained" disableElevation onClick={handleSearchClick} disableRipple>
+              <SearchIcon fontSize="small" />
+            </Button>
+          </div>
           <CachedItems caches={caches} handleCachedItem={handleCachedItem} />
         </div>
         <p className={styles.error}>{errorMessage}</p>

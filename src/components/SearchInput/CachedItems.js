@@ -14,7 +14,7 @@ const CachedItems = ({ caches, handleCachedItem }) => {
 
   return (
     <>
-      <Button variant="contained" disableElevation onClick={() => setOpen(true)}>
+      <Button variant="contained" disableElevation onClick={() => setOpen(true)} disableRipple>
         <Badge badgeContent={caches?.length} color="warning">
           <FolderOpenIcon fontSize="medium" />
         </Badge>

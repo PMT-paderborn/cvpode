@@ -73,7 +73,7 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) =>
         onNodeToggle={handleToggle}
         expanded={expands}
       >
-        {data && data.map((item) => renderTree(item))}
+          {data && data.map((item) => renderTree(item))}
       </TreeView>
     </div>
   );
