@@ -49,6 +49,7 @@ const getDepartmentLabel = (code) => {
         paddingLeft: "5px",
         paddingTop: "2px",
         paddingBottom: "2px",
+        marginLeft: "2px"
     };
 
     if (code < 44000000) return <span style={{...styles, backgroundColor: "rgba(244,67,54,0.2)", color: "rgb(244,67,54)"}}>Lieferleistungen</span>;

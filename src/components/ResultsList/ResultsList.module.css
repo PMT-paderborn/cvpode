@@ -25,7 +25,14 @@
 }
 
 .treeItem svg:first-child {
+  font-size: 16px;
   padding-top: 10px;
+  margin-left: 16px;
+}
+
+.checkbox {
+  margin-right: 1px;
+  padding: 0 0 0 0 !important;
 }
 
 .item {
@@ -52,10 +59,6 @@
 
 .fixedTopParent .dropperWraper {
   display: none;
-}
-
-.checkbox {
-  padding: 0 4px 0 0 !important;
 }
 
 .itemContent {
@@ -85,6 +88,7 @@
   height: 24px;
   width: fit-content;
   padding-right: 14px;
+  margin-left: 10px;
   border-radius: 8px 8px 0 0;
   text-transform: uppercase;
   font-size: 12px;
@@ -95,6 +99,7 @@
   background: none !important;
   margin: 0 !important;
   padding: 0 !important;
+  font-size: 24px !important;
 }
 
 .dropContent {
