@@ -39,6 +39,7 @@
   display: flex;
   align-items: flex-start;
   padding: 6px;
+  cursor: auto;
 }
 
 .fixedTopParent {
@@ -81,25 +82,28 @@
 }
 
 .dropper {
-  display: flex;
-  align-items: center;
-  background-color: #44b3ea !important;
-  color: #fff !important;
-  height: 24px;
-  width: fit-content;
-  padding-right: 14px;
-  margin-left: 10px;
-  border-radius: 8px 8px 0 0;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 600;
+  height: 16px;
+  width: 16px;
 }
 
-.dropper > svg {
-  background: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 24px !important;
+.infoMark {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  border-radius: 100%;
+  border: 0.1rem solid #0a717c;
+  color: #0a717c;
+  text-align: center;
+  width: 16px;
+  height: 16px;
+  line-height: 17px;
+  font-weight: 600;
+  font-family: "Times New Roman", Times, serif;
+  margin-left: 10px;
+}
+
+.dropperWraper {
+  cursor: auto;
 }
 
 .dropContent {
@@ -113,6 +117,16 @@
   white-space: pre-line;
 }
 
+.dropContent strong {
+  text-transform: uppercase;
+}
+
 .dropContentOpen {
   display: block;
+}
+
+.checkmark {
+  height: 24px;
+  width: 24px;
+  background: #0a717c;
 }

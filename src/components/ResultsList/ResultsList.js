@@ -46,9 +46,7 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) =>
         }
         sx={{ flexGrow: 1, padding: 1 }}
       >
-        <List>
-          {node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}
-        </List>
+        {node.hasChildren ? Object.values(node.children).map((child) => renderTree(child)) : null}
       </TreeItem>
     );
   };
@@ -73,7 +71,7 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) =>
         onNodeToggle={handleToggle}
         expanded={expands}
       >
-          {data && data.map((item) => renderTree(item))}
+        {data && data.map((item) => renderTree(item))}
       </TreeView>
     </div>
   );
