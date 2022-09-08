@@ -24,7 +24,7 @@ const removeCache = (code) => {
 };
 
 const clearCache = () => {
-  localStorage.removeItem(KEY_NAME);
+  // localStorage.removeItem(KEY_NAME);
 };
 
 export { getAllCache, getCached, storeCache, removeCache, clearCache };
