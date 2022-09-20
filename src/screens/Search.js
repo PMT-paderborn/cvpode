@@ -1,4 +1,3 @@
-import { Box, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 import SearchInput from "../components/SearchInput/SearchInput";
@@ -13,7 +12,7 @@ import {
   clearCache,
 } from "../services/cacheService";
 
-const Search = () => {
+const Search = ({ setHasSearchResults }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [searchKey, setSearchKey] = useState("");
@@ -27,6 +26,7 @@ const Search = () => {
       setLoading(false);
       setSearchResults(data);
       setError(data?.error);
+      setHasSearchResults(data.length > 0);
     });
   };
 
@@ -92,6 +92,7 @@ const Search = () => {
   return (
     <>
       <SearchInput
+        loading={loading}
         searchKey={searchKey}
         setSearchKey={setSearchKey}
         searchItems={searchResults}
@@ -109,13 +110,6 @@ const Search = () => {
         searchKey={searchKey}
         selected={selected}
       />
-      {loading && (
-        <Box
-          sx={{ display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 20 }}
-        >
-          <CircularProgress />
-        </Box>
-      )}
     </>
   );
 };

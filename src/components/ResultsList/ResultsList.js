@@ -51,7 +51,7 @@ const ResultsList = ({ data, handleCachedItem, caches, searchKey, selected }) =>
     );
   };
 
-  if (data.length === 0 || data.hasOwnProperty("error")) return <EmptyReult />;
+  if (data.length === 0 || data.hasOwnProperty("error")) return;
 
   return (
     <div className={styles.root}>

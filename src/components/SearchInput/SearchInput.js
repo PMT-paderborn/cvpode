@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   ClickAwayListener,
   InputBase,
   MenuItem,
@@ -13,6 +14,7 @@ import CachedItems from "./CachedItems";
 import styles from "./SearchInput.module.css";
 
 const SearchInput = ({
+  loading,
   searchKey,
   setSearchKey,
   handleSearchClick,
@@ -35,13 +37,24 @@ const SearchInput = ({
         <div className={styles.container}>
           <div className={styles.inputGroup}>
             <InputBase
-                id="input-text-input"
-                placeholder="Find CVP code"
-                value={searchKey}
-                onChange={(e) => setSearchKey(e.target.value)}
-                className={styles.input}
-                onKeyDown={handleInputKeyDown}
+              id="input-text-input"
+              placeholder="Find CVP code"
+              value={searchKey}
+              onChange={(e) => setSearchKey(e.target.value)}
+              className={styles.input}
+              onKeyDown={handleInputKeyDown}
             />
+            {loading && (
+              <CircularProgress
+                size={28}
+                sx={{
+                  background: "transparent",
+                  position: "absolute",
+                  right: "160px",
+                  width: "40px",
+                }}
+              />
+            )}
             <Button variant="contained" disableElevation onClick={handleSearchClick} disableRipple>
               <SearchIcon fontSize="small" />
             </Button>
