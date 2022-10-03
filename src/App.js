@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Search from "./screens/Search";
+import Input from "./screens/Input";
 import "./App.css";
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
   return (
     <div className="app-container" style={{ minHeight: hasSearchResults ? "500px" : "150px" }}>
       <div className="app-wrapper">
-        <Search setHasSearchResults={setHasSearchResults} />
+        <Input />
+        {/* <Search setHasSearchResults={setHasSearchResults} /> */}
       </div>
     </div>
   );
