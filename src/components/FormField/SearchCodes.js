@@ -11,13 +11,12 @@ const SearchCodes = ({ open, setOpen }) => {
           <Typography fontWeight={600} fontSize={24} flex={1}>
             Selected CPV Codes
           </Typography>
-          <IconButton color="error" onClick={() => setOpen(false)}>
-            <CloseIcon fontSize="medium" />
-          </IconButton>
         </Box>
         <Search />
         <Box sx={{ display: "flex", justifyContent: "end", paddingTop: 4 }}>
-          <Button variant="contained">Confirm</Button>
+          <Button variant="contained" onClick={() => setOpen(false)}>
+            Confirm
+          </Button>
         </Box>
       </div>
     </Modal>
